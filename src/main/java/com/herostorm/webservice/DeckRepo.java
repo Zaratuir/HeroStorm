@@ -7,10 +7,9 @@ import org.springframework.data.repository.NoRepositoryBean;
 import java.util.List;
 
 @NoRepositoryBean
-public interface DeckRepo extends MongoRepository<Card,String> {
-    public Deck createNewDeck();
-    public Deck updateDeck();
-    @Override
-    @Query("{User:?0}")
+public interface DeckRepo extends MongoRepository<Deck,String> {
+    @Query("{'User': ?0 ,'ID' : ?1 }")
+    public Deck findById(String userID, String deckID);
+    @Query("{'User':?0}")
     public List<Deck>findAll(String userID);
 }

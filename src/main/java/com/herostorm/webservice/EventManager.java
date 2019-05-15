@@ -1,7 +1,10 @@
 package com.herostorm.webservice;
 
-public class EventManager {
-    List<gameEvent> eventList
+import java.util.List;
+
+public class EventManager<gameEvent> {
+    List<gameEvent> eventList;
+
     public EventManager(){
 
     }

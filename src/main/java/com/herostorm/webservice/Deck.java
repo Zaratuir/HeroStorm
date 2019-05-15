@@ -6,15 +6,18 @@ import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
-@Document(collection="cards")
+@Document(collection="decks")
 public class Deck{
     @Id
     private String ID;
 
+    private String userID;
     private String name;
     private List<String> cards;
 
-    public Deck(){
+    public Deck(String deckName, String user){
+        this.name = deckName;
+        this.userID = user;
     }
 
     public void saveDeck(){
@@ -25,15 +28,17 @@ public class Deck{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Deck setName(String name) {
+        return new Deck(name, this.userID);
     }
 
-    public List<Card> getCards() {
+    public List<String> getCards() {
         return cards;
     }
 
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
+    public Deck setCards(List<String> cards) {
+        Deck newDeck = new Deck(this.name, this.userID);
+        newDeck.cards = cards;
+        return newDeck;
     }
 }

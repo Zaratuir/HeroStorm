@@ -1,13 +1,11 @@
 package com.herostorm.webservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.constraints.Min;
-import javax.xml.ws.WebServiceException;
 import java.util.List;
 
 @RestController
@@ -22,15 +20,16 @@ public class CardManager {
     @RequestMapping(value = "/cards/{id:^[0-9]+$}", method= RequestMethod.GET)
     private Card findCardByCardNumber(@PathVariable @Min(0) int id) throws ResponseStatusException {
         Card foundCard = repo.findByCardNumber(id);
-        if(foundCard != null) {
+        if (foundCard != null) {
             return foundCard;
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Card with ID " + id + " Not Found");
     }
 
     @RequestMapping(value="/cards/{id:!^[0-9]+$}", method=RequestMethod.GET)
-    private void WrongIDType() throws ResponseStatusException{
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Card ID Must Be Numeric");
+    private Card stringID(@PathVariable("id") String id) throws ResponseStatusException{
+        Card foundCard = repo.findById(id).get();
+        return foundCard;
     }
 
     @RequestMapping(value = "/cards", params="name", method= RequestMethod.GET)
