@@ -1,0 +1,14 @@
+  user:
+    secretKey: bM#*)}5+opIl`kp<Aff/!2N!K@<&K9
+  spring:
+    data.mongodb:
+      host: localhost
+      port: 27017
+      database: HeroStorm
+  jwt:
+    secretKey: pI!!svxbnqG5K0Q_7Z&8]l"yG"4E'B
+  jwt-provider:
+    expiryTimeInMinutes: 60
+  security:
+    headerString: "Authorization" #The header name  for the JWT
+    tokenPrefix: "Bearer " #The start of the JWT Token

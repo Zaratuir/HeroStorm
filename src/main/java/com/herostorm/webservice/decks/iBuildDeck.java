@@ -1,4 +1,6 @@
-package com.herostorm.webservice;
+package com.herostorm.webservice.decks;
+
+import com.herostorm.webservice.cards.Card;
 
 public interface iBuildDeck {
     public Deck addCard(Card card);

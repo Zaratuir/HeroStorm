@@ -1,4 +1,4 @@
-package com.herostorm.webservice;
+package com.herostorm.webservice.cards;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.NoRepositoryBean;

@@ -1,13 +1,15 @@
-package com.herostorm.webservice;
+package com.herostorm.webservice.cards;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.sql.Blob;
 
 @Document(collection="cards")
 public class Card {
 
     @Id
-    private String ID;
+    private String id;
 
     private int cardNumber;
     private int redCost = 0;
@@ -17,9 +19,20 @@ public class Card {
     private int blackCost = 0;
     private int yellowCost = 0;
     private int colorlessCost = 0;
+    private String imagePath;
     private String name;
 
-    public Card(){
+    public Card(String name, int cardNumber){
+        this.name = name;
+        this.cardNumber = cardNumber;
+        this.redCost = 0;
+        this.blueCost = 0;
+        this.greenCost = 0;
+        this.whiteCost = 0;
+        this.blackCost = 0;
+        this.yellowCost = 0;
+        this.colorlessCost = 0;
+        this.imagePath = "/images/DefaultImage.png";
     }
 
     public int getRedCost() {
@@ -92,5 +105,21 @@ public class Card {
 
     public void setCardNumber(int cardNumber) {
         this.cardNumber = cardNumber;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 }
